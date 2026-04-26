@@ -4,7 +4,8 @@ import { BASE_ISOLATE_PORT } from "./constants";
 const instrucktIsolate: IsolateDefinition = {
   name: "instruckt",
   port: BASE_ISOLATE_PORT + 5,
-  description: "Instruckt — uses element-source internally for React fiber source detection",
+  description:
+    "Instruckt — uses element-source internally for React fiber source detection",
   dependencies: ["instruckt", "element-source"],
 
   configureNext: (baseConfig) => baseConfig,
@@ -13,7 +14,8 @@ const instrucktIsolate: IsolateDefinition = {
     name: "instruckt",
     resolve: async (element) => {
       try {
-        const { resolveSource, resolveComponentName } = await import("element-source");
+        const { resolveSource, resolveComponentName } =
+          await import("element-source");
         const source = await resolveSource(element);
         const componentName = await resolveComponentName(element);
 

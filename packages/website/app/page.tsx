@@ -1,19 +1,17 @@
 import { Suspense } from "react";
 import { GitHubIcon } from "@/components/icons/github-icon";
-import { ReactBenchLogo } from "@/components/icons/react-bench-logo";
 import { ResultsSection } from "@/components/results-section";
 import { benchData } from "@/lib/bench-data";
 
 const LINK_CLASS =
-  "underline decoration-stone-300/70 underline-offset-[3px] decoration-1 hover:decoration-stone-400";
+  "underline decoration-muted-foreground/40 underline-offset-[3px] decoration-1 hover:decoration-muted-foreground";
 
 const Page = () => (
   <div className="min-h-screen px-4 py-6 sm:px-8 sm:py-8">
     <div className="mx-auto flex w-full max-w-[600px] flex-col gap-2 pt-4 text-base leading-relaxed sm:pt-8">
       <div className="flex items-center justify-between">
         <h1 className="text-lg font-semibold flex items-center gap-2">
-          <ReactBenchLogo className="size-6" />
-          React Bench
+          React Grab Bench
         </h1>
         <a
           href="https://github.com/aidenybai/react-bench"

@@ -15,7 +15,9 @@ const ISOLATE_REGISTRY: IsolateDefinition[] = [
   instrucktIsolate,
 ];
 
-const findIsolateByName = (isolateName: string): IsolateDefinition | undefined =>
+const findIsolateByName = (
+  isolateName: string,
+): IsolateDefinition | undefined =>
   ISOLATE_REGISTRY.find((isolate) => isolate.name === isolateName);
 
 export { ISOLATE_REGISTRY, findIsolateByName };

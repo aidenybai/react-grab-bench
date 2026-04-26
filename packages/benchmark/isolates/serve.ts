@@ -48,7 +48,9 @@ const isolatesToStart = targetIsolateName
   : ISOLATE_REGISTRY;
 
 if (isolatesToStart.length === 0) {
-  const availableNames = ISOLATE_REGISTRY.map((isolate) => isolate.name).join(", ");
+  const availableNames = ISOLATE_REGISTRY.map((isolate) => isolate.name).join(
+    ", ",
+  );
   console.error(
     `Unknown isolate: "${targetIsolateName}". Available: ${availableNames}`,
   );

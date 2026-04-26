@@ -44,10 +44,26 @@ interface IsolateTarget {
 }
 
 const ISOLATE_TARGETS: IsolateTarget[] = [
-  { resolverName: "react-grab", clipboardKey: "reactGrabClipboard", port: 3010 },
-  { resolverName: "agentation", clipboardKey: "agentationClipboard", port: 3011 },
-  { resolverName: "cursor-browser", clipboardKey: "cursorBrowserClipboard", port: 3012 },
-  { resolverName: "click-to-component", clipboardKey: "clickToComponentClipboard", port: 3013 },
+  {
+    resolverName: "react-grab",
+    clipboardKey: "reactGrabClipboard",
+    port: 3010,
+  },
+  {
+    resolverName: "agentation",
+    clipboardKey: "agentationClipboard",
+    port: 3011,
+  },
+  {
+    resolverName: "cursor-browser",
+    clipboardKey: "cursorBrowserClipboard",
+    port: 3012,
+  },
+  {
+    resolverName: "click-to-component",
+    clipboardKey: "clickToComponentClipboard",
+    port: 3013,
+  },
   { resolverName: "locatorjs", clipboardKey: "locatorjsClipboard", port: 3014 },
   { resolverName: "instruckt", clipboardKey: "instrucktClipboard", port: 3015 },
 ];
@@ -126,7 +142,9 @@ const loadRerunCheckpoint = (): {
   if (!BENCH_RERUN) return null;
   const checkpoint = loadCheckpoint();
   if (!checkpoint?.browserCollected?.length) {
-    console.error(`  No checkpoint found — run a full benchmark first before using BENCH_RERUN`);
+    console.error(
+      `  No checkpoint found — run a full benchmark first before using BENCH_RERUN`,
+    );
     return null;
   }
 
@@ -136,13 +154,22 @@ const loadRerunCheckpoint = (): {
   let removedCount = 0;
   for (const taskKey of Object.keys(agentCompleted)) {
     const resolverName = taskKey.split(":").slice(1).join(":");
-    if (resolverNames.some((name) => resolverName === name || resolverName.startsWith(`${name}+`) || resolverName.endsWith(`+${name}`))) {
+    if (
+      resolverNames.some(
+        (name) =>
+          resolverName === name ||
+          resolverName.startsWith(`${name}+`) ||
+          resolverName.endsWith(`+${name}`),
+      )
+    ) {
       delete agentCompleted[taskKey];
       removedCount++;
     }
   }
 
-  console.log(`  BENCH_RERUN: cleared ${removedCount} results for [${resolverNames.join(", ")}], reusing browser data (${checkpoint.browserCollected.length} entries)`);
+  console.log(
+    `  BENCH_RERUN: cleared ${removedCount} results for [${resolverNames.join(", ")}], reusing browser data (${checkpoint.browserCollected.length} entries)`,
+  );
   return { collected: checkpoint.browserCollected, agentCompleted };
 };
 
@@ -217,7 +244,9 @@ const collectIsolateClipboards = async (
 ): Promise<void> => {
   for (const isolate of ISOLATE_TARGETS) {
     const isolateUrl = `http://localhost:${isolate.port}`;
-    console.log(`  Collecting clipboard from isolate: ${isolate.resolverName} (${isolateUrl})`);
+    console.log(
+      `  Collecting clipboard from isolate: ${isolate.resolverName} (${isolateUrl})`,
+    );
 
     await page.goto(isolateUrl, { waitUntil: "load" });
     await page.waitForFunction(
@@ -253,17 +282,22 @@ const collectIsolateClipboards = async (
           if (!result?.found || !result.filePath) return null;
 
           const lines = [`Source (${resolverName}): ${result.filePath}`];
-          if (result.componentName) lines.push(`Component: ${result.componentName}`);
+          if (result.componentName)
+            lines.push(`Component: ${result.componentName}`);
           return lines.join("\n");
         },
         { testId: hashedTestId, resolverName: isolate.resolverName },
       );
 
-      (item.elementContext as unknown as Record<string, unknown>)[isolate.clipboardKey] = clipboard;
+      (item.elementContext as unknown as Record<string, unknown>)[
+        isolate.clipboardKey
+      ] = clipboard;
     }
   }
 
-  console.log(`  Isolated clipboard collection done (${ISOLATE_TARGETS.length} tools)\n`);
+  console.log(
+    `  Isolated clipboard collection done (${ISOLATE_TARGETS.length} tools)\n`,
+  );
 };
 
 const runAgentPhase = async (
@@ -446,11 +480,17 @@ const printResults = (
     const accuracyCIFormatted = `[${(accuracyCI.lower * 100).toFixed(1)}–${(accuracyCI.upper * 100).toFixed(1)}%]`;
 
     const allTimingValues = results
-      .filter((entryResult) => !entryResult.error && entryResult.resolvers[resolverName]?.ms > 0)
+      .filter(
+        (entryResult) =>
+          !entryResult.error && entryResult.resolvers[resolverName]?.ms > 0,
+      )
       .map((entryResult) =>
         entryResult.resolvers[resolverName].correct
           ? entryResult.resolvers[resolverName].ms
-          : Math.max(entryResult.resolvers[resolverName].ms, WRONG_ANSWER_FLOOR_MS),
+          : Math.max(
+              entryResult.resolvers[resolverName].ms,
+              WRONG_ANSWER_FLOOR_MS,
+            ),
       );
     const speedCI = geomeanConfidenceInterval(allTimingValues);
     const speedFormatted =
@@ -602,7 +642,10 @@ test.describe("Benchmark", () => {
       `\n  Resolvers: ${allResolverNames.join(", ")} (${backendInfo})`,
     );
     console.log(`  Entries:   ${TEST_MANIFEST.length}`);
-    if (BENCH_ISOLATED) console.log(`  Mode:      isolated (${ISOLATE_TARGETS.length} isolate servers)`);
+    if (BENCH_ISOLATED)
+      console.log(
+        `  Mode:      isolated (${ISOLATE_TARGETS.length} isolate servers)`,
+      );
     console.log();
 
     const { collected, agentCompleted } = await collectBrowserPhase(page);

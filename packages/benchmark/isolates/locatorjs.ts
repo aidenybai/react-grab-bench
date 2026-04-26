@@ -4,7 +4,8 @@ import { BASE_ISOLATE_PORT } from "./constants";
 const locatorjsIsolate: IsolateDefinition = {
   name: "locatorjs",
   port: BASE_ISOLATE_PORT + 4,
-  description: "LocatorJS runtime-only — walks React fiber tree via adapter without Babel plugin",
+  description:
+    "LocatorJS runtime-only — walks React fiber tree via adapter without Babel plugin",
   dependencies: ["@locator/runtime"],
 
   configureNext: (baseConfig) => baseConfig,

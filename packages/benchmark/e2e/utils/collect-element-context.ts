@@ -88,7 +88,11 @@ const collectElementContext = async (
       ]);
 
     const formatSimpleClipboard = (
-      result: { filePath: string | null; componentName: string | null; found: boolean } | null,
+      result: {
+        filePath: string | null;
+        componentName: string | null;
+        found: boolean;
+      } | null,
     ): string | null => {
       if (!result?.found || !result.filePath) return null;
       let text = result.filePath;
@@ -96,7 +100,9 @@ const collectElementContext = async (
       return text;
     };
 
-    const clickToComponentClipboard = formatSimpleClipboard(clickToComponentResult);
+    const clickToComponentClipboard = formatSimpleClipboard(
+      clickToComponentResult,
+    );
     const locatorjsClipboard = formatSimpleClipboard(locatorjsResult);
 
     const instrucktClipboard = benchApi.buildInstrucktClipboard

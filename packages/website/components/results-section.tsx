@@ -188,9 +188,7 @@ const ResultsBarChart = ({
         tickLine={false}
         axisLine={false}
         tick={<LogoTick chartEntries={data} isCompact={isCompact} />}
-        height={
-          isCompact ? XAXIS_HEIGHT_COMPACT_PX : XAXIS_HEIGHT_NORMAL_PX
-        }
+        height={isCompact ? XAXIS_HEIGHT_COMPACT_PX : XAXIS_HEIGHT_NORMAL_PX}
         interval={0}
       />
       <YAxis
@@ -337,38 +335,33 @@ const sortResolverKeysByMetric = (
   });
 };
 
-const buildOverallData = (
-  filteredResolverKeys: string[],
-): ChartDataEntry[] => {
+const buildOverallData = (filteredResolverKeys: string[]): ChartDataEntry[] => {
   const overallScenario = getOverallScenario();
   if (!overallScenario) return [];
 
   const controlKey = "claude-code";
   const controlData =
-    overallScenario.results[
-      controlKey as keyof typeof overallScenario.results
-    ];
+    overallScenario.results[controlKey as keyof typeof overallScenario.results];
   const baselineAccuracy = controlData?.accuracy ?? 0;
 
   return filteredResolverKeys
     .map((resolverKey) => {
-      const resolverData =
-        overallScenario.results[
-          resolverKey as keyof typeof overallScenario.results
-        ] as Record<string, unknown> | undefined;
+      const resolverData = overallScenario.results[
+        resolverKey as keyof typeof overallScenario.results
+      ] as Record<string, unknown> | undefined;
       const speed = (resolverData?.speed as number) ?? 0;
       const accuracy = (resolverData?.accuracy as number) ?? 0;
       if (speed === 0 || accuracy === 0) return null;
 
       if (
         resolverKey !== controlKey &&
-        Math.abs(accuracy - baselineAccuracy) / 100 < BASELINE_ACCURACY_THRESHOLD
+        Math.abs(accuracy - baselineAccuracy) / 100 <
+          BASELINE_ACCURACY_THRESHOLD
       ) {
         return null;
       }
 
-      const timePerCorrect =
-        Math.round((speed / (accuracy / 100)) * 10) / 10;
+      const timePerCorrect = Math.round((speed / (accuracy / 100)) * 10) / 10;
 
       return {
         label: getTreatmentLabel(resolverKey),

@@ -5,7 +5,7 @@ import { ProviderStack } from "@/components/providers/provider-stack";
 import { BenchHarness } from "@/components/bench-harness";
 
 export const metadata: Metadata = {
-  title: "React Bench - Benchmark Harness",
+  title: "React Grab Bench - Benchmark Harness",
   description:
     "75-component test harness for benchmarking coding agent element retrieval",
 };

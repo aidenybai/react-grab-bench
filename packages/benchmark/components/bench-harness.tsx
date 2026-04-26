@@ -150,7 +150,8 @@ const instrucktResolver: Resolver = {
   name: "instruckt",
   resolve: async (el) => {
     try {
-      const { resolveSource, resolveComponentName } = await import("element-source");
+      const { resolveSource, resolveComponentName } =
+        await import("element-source");
       const source = await resolveSource(el);
       const componentName = await resolveComponentName(el);
 
@@ -196,7 +197,10 @@ interface BenchAPI {
     getDetailedComputedStyles: typeof getDetailedComputedStyles;
   };
   formatInstrucktMarkdown: typeof formatAnnotationMarkdown;
-  buildInstrucktClipboard: (element: HTMLElement, pathname: string) => Promise<string | null>;
+  buildInstrucktClipboard: (
+    element: HTMLElement,
+    pathname: string,
+  ) => Promise<string | null>;
 }
 
 const createBenchAPI = (): BenchAPI => {
@@ -289,18 +293,28 @@ const createBenchAPI = (): BenchAPI => {
 
     formatInstrucktMarkdown: formatAnnotationMarkdown,
 
-    buildInstrucktClipboard: async (element: HTMLElement, pathname: string): Promise<string | null> => {
+    buildInstrucktClipboard: async (
+      element: HTMLElement,
+      pathname: string,
+    ): Promise<string | null> => {
       try {
         const { resolveElementInfo } = await import("element-source");
         const elementInfo = await resolveElementInfo(element);
         if (!elementInfo?.source) return null;
 
-        const stack = elementInfo.stack.map((frame: { filePath: string; lineNumber: number | null; columnNumber: number | null; componentName: string | null }) => ({
-          filePath: frame.filePath,
-          lineNumber: frame.lineNumber,
-          columnNumber: frame.columnNumber,
-          componentName: frame.componentName,
-        }));
+        const stack = elementInfo.stack.map(
+          (frame: {
+            filePath: string;
+            lineNumber: number | null;
+            columnNumber: number | null;
+            componentName: string | null;
+          }) => ({
+            filePath: frame.filePath,
+            lineNumber: frame.lineNumber,
+            columnNumber: frame.columnNumber,
+            componentName: frame.componentName,
+          }),
+        );
 
         const annotation = {
           id: "bench-probe",
@@ -319,7 +333,10 @@ const createBenchAPI = (): BenchAPI => {
           },
         };
 
-        return formatAnnotationMarkdown([annotation] as Parameters<typeof formatAnnotationMarkdown>[0], pathname);
+        return formatAnnotationMarkdown(
+          [annotation] as Parameters<typeof formatAnnotationMarkdown>[0],
+          pathname,
+        );
       } catch {
         return null;
       }

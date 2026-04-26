@@ -707,10 +707,7 @@ export function ClientBenchmarks() {
 
       <StyledSection title="Easy: Simple Primitives">
         <StyledGrid columns={3}>
-          <TwHeading
-            size="md"
-            data-testid={hashTestId("plain-tw-heading")}
-          >
+          <TwHeading size="md" data-testid={hashTestId("plain-tw-heading")}>
             Section Title
           </TwHeading>
 
@@ -719,10 +716,7 @@ export function ClientBenchmarks() {
             data-testid={hashTestId("plain-styled-divider")}
           />
 
-          <TwAlert
-            variant="info"
-            data-testid={hashTestId("plain-tw-alert")}
-          >
+          <TwAlert variant="info" data-testid={hashTestId("plain-tw-alert")}>
             This is an informational message.
           </TwAlert>
 
@@ -927,9 +921,7 @@ export function ClientBenchmarks() {
           <ShadcnForm data-testid={hashTestId("shadcn-form")} />
           <ShadcnDataDisplay data-testid={hashTestId("shadcn-data-display")} />
 
-          <InstrucktToolbar
-            data-testid={hashTestId("instruckt-toolbar")}
-          />
+          <InstrucktToolbar data-testid={hashTestId("instruckt-toolbar")} />
         </StyledGrid>
       </StyledSection>
 
@@ -958,10 +950,7 @@ export function ClientBenchmarks() {
           />
 
           <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-            <InlineTag
-              color="blue"
-              data-testid={hashTestId("inline-tag")}
-            >
+            <InlineTag color="blue" data-testid={hashTestId("inline-tag")}>
               React
             </InlineTag>
             <InlineTag color="green">TypeScript</InlineTag>
@@ -1970,18 +1959,14 @@ export function ClientBenchmarks() {
 
       <StyledSection title="Nightmare: Content Projection (testid on outlet, content from source)">
         <StyledGrid columns={2}>
-          <ProjectedUserCard
-            data-testid={hashTestId("projected-user-card")}
-          />
+          <ProjectedUserCard data-testid={hashTestId("projected-user-card")} />
           <ProjectedAlertStrip
             data-testid={hashTestId("projected-alert-strip")}
           />
           <ProjectedActionBar
             data-testid={hashTestId("projected-action-bar")}
           />
-          <ProjectedStatsRow
-            data-testid={hashTestId("projected-stats-row")}
-          />
+          <ProjectedStatsRow data-testid={hashTestId("projected-stats-row")} />
           <ProjectedBreadcrumb
             data-testid={hashTestId("projected-breadcrumb")}
           />
@@ -1993,16 +1978,10 @@ export function ClientBenchmarks() {
           <DeploymentStatus
             data-testid={hashTestId("adapter-deployment-status")}
           />
-          <IncidentBanner
-            data-testid={hashTestId("adapter-incident-banner")}
-          />
-          <TeamMemberRow
-            data-testid={hashTestId("adapter-team-member-row")}
-          />
+          <IncidentBanner data-testid={hashTestId("adapter-incident-banner")} />
+          <TeamMemberRow data-testid={hashTestId("adapter-team-member-row")} />
           <QuotaGauge data-testid={hashTestId("adapter-quota-gauge")} />
-          <ChangelogEntry
-            data-testid={hashTestId("adapter-changelog-entry")}
-          />
+          <ChangelogEntry data-testid={hashTestId("adapter-changelog-entry")} />
         </StyledGrid>
       </StyledSection>
 

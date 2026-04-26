@@ -14,17 +14,44 @@ interface ServerTarget {
 const MAIN_SERVER: ServerTarget = { name: "main", port: 3001 };
 
 const ISOLATE_SERVERS: ServerTarget[] = [
-  { name: "react-grab", port: 3010, env: { NEXT_PUBLIC_BENCH_ISOLATE: "react-grab" } },
-  { name: "agentation", port: 3011, env: { NEXT_PUBLIC_BENCH_ISOLATE: "agentation" } },
-  { name: "cursor-browser", port: 3012, env: { NEXT_PUBLIC_BENCH_ISOLATE: "cursor-browser" } },
-  { name: "click-to-component", port: 3013, env: { NEXT_PUBLIC_BENCH_ISOLATE: "click-to-component" } },
-  { name: "locatorjs", port: 3014, env: { NEXT_PUBLIC_BENCH_ISOLATE: "locatorjs" } },
-  { name: "instruckt", port: 3015, env: { NEXT_PUBLIC_BENCH_ISOLATE: "instruckt" } },
+  {
+    name: "react-grab",
+    port: 3010,
+    env: { NEXT_PUBLIC_BENCH_ISOLATE: "react-grab" },
+  },
+  {
+    name: "agentation",
+    port: 3011,
+    env: { NEXT_PUBLIC_BENCH_ISOLATE: "agentation" },
+  },
+  {
+    name: "cursor-browser",
+    port: 3012,
+    env: { NEXT_PUBLIC_BENCH_ISOLATE: "cursor-browser" },
+  },
+  {
+    name: "click-to-component",
+    port: 3013,
+    env: { NEXT_PUBLIC_BENCH_ISOLATE: "click-to-component" },
+  },
+  {
+    name: "locatorjs",
+    port: 3014,
+    env: { NEXT_PUBLIC_BENCH_ISOLATE: "locatorjs" },
+  },
+  {
+    name: "instruckt",
+    port: 3015,
+    env: { NEXT_PUBLIC_BENCH_ISOLATE: "instruckt" },
+  },
 ];
 
 const ALL_SERVERS = [MAIN_SERVER, ...ISOLATE_SERVERS];
 
-const waitForServer = async (port: number, timeoutMs: number): Promise<boolean> => {
+const waitForServer = async (
+  port: number,
+  timeoutMs: number,
+): Promise<boolean> => {
   const startedAt = Date.now();
   while (Date.now() - startedAt < timeoutMs) {
     try {
@@ -33,7 +60,9 @@ const waitForServer = async (port: number, timeoutMs: number): Promise<boolean> 
     } catch {
       // HACK: Server not ready yet, keep polling
     }
-    await new Promise((resolve) => setTimeout(resolve, STARTUP_POLL_INTERVAL_MS));
+    await new Promise((resolve) =>
+      setTimeout(resolve, STARTUP_POLL_INTERVAL_MS),
+    );
   }
   return false;
 };
@@ -83,7 +112,9 @@ const run = async () => {
     const isReady = await waitForServer(target.port, STARTUP_TIMEOUT_MS);
     if (!isReady) {
       console.error(` FAILED`);
-      console.error(`\n${target.name} (port ${target.port}) failed to start within ${STARTUP_TIMEOUT_MS / 1000}s. Aborting.`);
+      console.error(
+        `\n${target.name} (port ${target.port}) failed to start within ${STARTUP_TIMEOUT_MS / 1000}s. Aborting.`,
+      );
       shutdown();
       return;
     }

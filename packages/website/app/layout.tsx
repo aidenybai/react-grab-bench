@@ -22,11 +22,8 @@ const fontMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "React Bench",
+  title: "React Grab Bench",
   description: "Evaluating coding agents on React.js tasks",
-  icons: {
-    icon: "/logo.svg",
-  },
 };
 
 const RootLayout = ({
@@ -36,7 +33,7 @@ const RootLayout = ({
 }>) => (
   <html
     lang="en"
-    className={`${fontSans.variable} ${fontSerif.variable} ${fontMono.variable}`}
+    className={`dark ${fontSans.variable} ${fontSerif.variable} ${fontMono.variable}`}
   >
     <head>
       {process.env.NODE_ENV === "development" && (

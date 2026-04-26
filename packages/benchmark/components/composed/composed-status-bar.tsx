@@ -26,9 +26,7 @@ interface ComposedStatusBarProps {
   "data-testid"?: string;
 }
 
-const InnerStatusBar = ({
-  "data-testid": testId,
-}: ComposedStatusBarProps) => (
+const InnerStatusBar = ({ "data-testid": testId }: ComposedStatusBarProps) => (
   <StatusBarBase data-testid={testId}>
     <StatusDot $color="#22c55e" />
     <span>All services operational</span>

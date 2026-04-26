@@ -4,7 +4,8 @@ import { BASE_ISOLATE_PORT } from "./constants";
 const cursorBrowserIsolate: IsolateDefinition = {
   name: "cursor-browser",
   port: BASE_ISOLATE_PORT + 2,
-  description: "Cursor Browser Inspector — uses window.__CURSOR_BROWSER_INSPECTOR__ for component detection",
+  description:
+    "Cursor Browser Inspector — uses window.__CURSOR_BROWSER_INSPECTOR__ for component detection",
   dependencies: [],
 
   configureNext: (baseConfig) => baseConfig,
