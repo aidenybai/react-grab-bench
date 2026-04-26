@@ -80,7 +80,7 @@ const RESOLVER_TO_MODEL_KEY: Record<string, string> = Object.fromEntries(
   ),
 );
 
-const getTreatmentProperty = <T,>(
+const getTreatmentProperty = <T>(
   resolverKey: string,
   map: Record<string, T>,
 ): T | undefined => {

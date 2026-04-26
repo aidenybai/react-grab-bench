@@ -4,7 +4,8 @@ import { BASE_ISOLATE_PORT } from "./constants";
 const clickToReactComponentIsolate: IsolateDefinition = {
   name: "click-to-component",
   port: BASE_ISOLATE_PORT + 3,
-  description: "click-to-react-component — walks fiber tree via _debugSource and DevTools hook",
+  description:
+    "click-to-react-component — walks fiber tree via _debugSource and DevTools hook",
   dependencies: ["click-to-react-component"],
 
   configureNext: (baseConfig) => baseConfig,

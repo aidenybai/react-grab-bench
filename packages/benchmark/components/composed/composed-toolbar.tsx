@@ -26,7 +26,7 @@ const ToolbarButton = styled.button`
   background: transparent;
   cursor: pointer;
   font-size: 16px;
-
+  
   &:hover {
     background: var(--muted);
   }

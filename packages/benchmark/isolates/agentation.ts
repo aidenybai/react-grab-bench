@@ -4,7 +4,8 @@ import { BASE_ISOLATE_PORT } from "./constants";
 const agentationIsolate: IsolateDefinition = {
   name: "agentation",
   port: BASE_ISOLATE_PORT + 1,
-  description: "Agentation — floating toolbar with React fiber source location detection",
+  description:
+    "Agentation — floating toolbar with React fiber source location detection",
   dependencies: ["agentation"],
 
   configureNext: (baseConfig) => baseConfig,

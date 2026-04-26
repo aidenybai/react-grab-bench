@@ -4,7 +4,8 @@ import { BASE_ISOLATE_PORT } from "./constants";
 const reactGrabIsolate: IsolateDefinition = {
   name: "react-grab",
   port: BASE_ISOLATE_PORT,
-  description: "React Grab — runtime script that reads fiber tree via window.__REACT_GRAB__",
+  description:
+    "React Grab — runtime script that reads fiber tree via window.__REACT_GRAB__",
   dependencies: ["react-grab"],
 
   configureNext: (baseConfig) => baseConfig,

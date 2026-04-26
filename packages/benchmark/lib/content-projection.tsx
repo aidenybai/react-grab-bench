@@ -11,11 +11,7 @@ const ProjectionContext = createContext<ProjectionSlot>({
   setContent: () => {},
 });
 
-export const ProjectionHost = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
+export const ProjectionHost = ({ children }: { children: React.ReactNode }) => {
   const [content, setContent] = useState<React.ReactNode>(null);
   return (
     <ProjectionContext.Provider value={{ content, setContent }}>

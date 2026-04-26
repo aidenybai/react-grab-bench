@@ -21,7 +21,7 @@ const LabeledWrapper = styled.div`
   display: flex;
   align-items: center;
   margin: 16px 0;
-
+  
   &::before,
   &::after {
     content: "";
